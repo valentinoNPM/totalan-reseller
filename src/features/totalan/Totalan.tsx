@@ -277,6 +277,47 @@ export default function Totalan() {
         />
       </div>
 
+      <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: 'var(--spacing-3)', marginBottom: 'var(--spacing-4)' }}>
+        <h3 style={{ marginBottom: 'var(--spacing-3)' }}>Pengiriman (Opsional)</h3>
+        <div className="shipping-fields">
+          <input
+            type="text"
+            placeholder="Ekspedisi, contoh: J&amp;T"
+            aria-label="Ekspedisi"
+            value={courier}
+            onChange={e => setCourier(e.target.value)}
+            maxLength={100}
+          />
+          <select
+            value={shippingMode}
+            onChange={e => setShippingMode(e.target.value as 'prepaid' | 'collect')}
+            aria-label="Cara bayar ongkir"
+          >
+            <option value="prepaid">Dibayar Langsung (Prepaid)</option>
+            <option value="collect">Bayar di Tempat (Collect)</option>
+          </select>
+          <input
+            type="number"
+            placeholder="Ongkos kirim (opsional)"
+            value={shippingAmountText}
+            onChange={e => setShippingAmountText(e.target.value)}
+            aria-label="Ongkos kirim"
+            inputMode="numeric"
+            min="0"
+          />
+        </div>
+        {shippingMode === 'collect' && shippingAmount === null && (
+          <div style={{ fontSize: '12px', marginTop: 'var(--spacing-2)', color: 'var(--color-text-light)' }}>
+            Ongkir akan mengikuti tagihan ekspedisi saat diterima.
+          </div>
+        )}
+        {shippingMode === 'prepaid' && shippingAmount === null && (
+          <div style={{ fontSize: '12px', marginTop: 'var(--spacing-2)', color: 'var(--color-text-light)' }}>
+            Total sementara (belum termasuk ongkir).
+          </div>
+        )}
+      </div>
+
       <div style={{ marginBottom: 'var(--spacing-4)' }}>
         <textarea 
           placeholder="Tempel rekap pesanan dari WA di sini..."
@@ -418,47 +459,6 @@ export default function Totalan() {
               </div>
             </section>
           )}
-
-          <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: 'var(--spacing-3)', marginBottom: 'var(--spacing-5)' }}>
-            <h3 style={{ marginBottom: 'var(--spacing-3)' }}>Pengiriman (Opsional)</h3>
-            <div className="shipping-fields">
-              <input
-                type="text"
-                placeholder="Ekspedisi, contoh: J&amp;T"
-                aria-label="Ekspedisi"
-                value={courier}
-                onChange={e => setCourier(e.target.value)}
-                maxLength={100}
-              />
-              <select 
-                value={shippingMode} 
-                onChange={e => setShippingMode(e.target.value as any)}
-                aria-label="Cara bayar ongkir"
-              >
-                <option value="prepaid">Dibayar Langsung (Prepaid)</option>
-                <option value="collect">Bayar di Tempat (Collect)</option>
-              </select>
-              <input 
-                type="number" 
-                placeholder="Nominal (opsional)" 
-                value={shippingAmountText}
-                onChange={e => setShippingAmountText(e.target.value)}
-                aria-label="Ongkos kirim"
-                inputMode="numeric"
-                min="0"
-              />
-            </div>
-            {shippingMode === 'collect' && shippingAmount === null && (
-              <div style={{ fontSize: '12px', marginTop: 'var(--spacing-2)', color: 'var(--color-text-light)' }}>
-                Ongkir akan mengikuti tagihan ekspedisi saat diterima.
-              </div>
-            )}
-            {shippingMode === 'prepaid' && shippingAmount === null && (
-              <div style={{ fontSize: '12px', marginTop: 'var(--spacing-2)', color: 'var(--color-text-light)' }}>
-                Total sementara (belum termasuk ongkir).
-              </div>
-            )}
-          </div>
 
           <div style={{ 
             position: 'fixed', 
