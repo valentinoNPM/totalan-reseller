@@ -314,6 +314,23 @@ export default function Totalan() {
                 </div>
               );
             })}
+            
+            <div style={{ marginTop: 'var(--spacing-3)', paddingTop: 'var(--spacing-3)', borderTop: '2px dashed var(--color-border)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+                <span>Total Pcs: {totals.totalQty} ({totals.tier})</span>
+                <span>Barang: Rp{totals.goodsTotal.toLocaleString('id-ID')}</span>
+              </div>
+              {shippingMode === 'prepaid' && shippingAmount !== null && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
+                  <span>Ongkos Kirim</span>
+                  <span>Rp{shippingAmount.toLocaleString('id-ID')}</span>
+                </div>
+              )}
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '18px', marginTop: '8px', color: 'var(--color-primary-dark)' }}>
+                <span>Total Transfer</span>
+                <span>Rp{totals.transferTotal.toLocaleString('id-ID')}</span>
+              </div>
+            </div>
           </div>
 
           <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: 'var(--spacing-3)', marginBottom: 'var(--spacing-5)' }}>
