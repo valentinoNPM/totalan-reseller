@@ -133,7 +133,7 @@ export default function Master() {
       {loading ? (
         <p>Memuat...</p>
       ) : (
-          // -- Insert new section here (Start)
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
           {isAdding ? (
             <div style={{
               border: '2px solid var(--color-primary)',
@@ -205,7 +205,6 @@ export default function Master() {
               <Plus size={16} /> Tambah Produk Baru
             </button>
           )}
-          // -- Insert new section here (End)
 
           {products.map(p => {
             const isEditing = editingId === p.id;
