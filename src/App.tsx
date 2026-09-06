@@ -53,11 +53,13 @@ function Layout({ session }: { session: Session | null }) {
         <footer style={{ 
           display: 'flex', 
           justifyContent: 'space-around', 
-          padding: 'var(--spacing-3)', 
+          padding: 'var(--spacing-3)',
+          paddingBottom: 'calc(var(--spacing-3) + 20px)', // Ekstra ruang untuk badge Netlify / iOS indicator
           borderTop: '1px solid var(--color-border)',
           position: 'sticky',
           bottom: 0,
-          backgroundColor: 'var(--color-bg)'
+          backgroundColor: 'var(--color-bg)',
+          zIndex: 9999
         }}>
           <button onClick={() => navigate('/totalan')}>Totalan</button>
           <button onClick={() => navigate('/riwayat')}>Riwayat</button>
