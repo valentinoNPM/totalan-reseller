@@ -4,6 +4,7 @@ import { parseOrderText, type ParsedLine } from '../../domain/parser';
 import { calculateOrderTotals, type PricingProduct } from '../../domain/pricing';
 import { Trash2, Copy, Image as ImageIcon } from 'lucide-react';
 import { toPng } from 'html-to-image';
+import './totalan.css';
 
 interface CatalogProduct extends PricingProduct {
   id: string;
@@ -15,6 +16,14 @@ interface PreviewItem extends ParsedLine {
   catalogProduct?: CatalogProduct;
   manualQty?: number;
 }
+
+const formatRupiah = (value: number) => `Rp${value.toLocaleString('id-ID')}`;
+
+const tierLabel: Record<'reseller' | 'grosir' | 'partai', string> = {
+  reseller: 'Reseller',
+  grosir: 'Grosir',
+  partai: 'Partai',
+};
 
 export default function Totalan() {
   const [rawText, setRawText] = useState('');
@@ -135,6 +144,14 @@ export default function Totalan() {
 
   const totals = calculateOrderTotals(validPricingItems, shippingMode, shippingAmount);
 
+  const getPrice = (product: CatalogProduct) => product[
+    totals.tier === 'partai'
+      ? 'bulk_price'
+      : totals.tier === 'grosir'
+        ? 'wholesale_price'
+        : 'reseller_price'
+  ];
+
   const hasErrors = previewItems.some(i => !i.isIgnored && (!i.isValid || !i.catalogProduct));
   const canSave = hasPreview && !hasErrors && validPricingItems.length > 0;
 
@@ -153,21 +170,36 @@ export default function Totalan() {
     try {
       await navigator.clipboard.writeText(lines.join('\n'));
       alert('Teks disalin!');
-    } catch (err) {
+    } catch {
       alert('Gagal menyalin teks (clipboard error).');
     }
   };
 
   const handleExportPNG = async () => {
     if (!printRef.current) return;
+    const invoiceElement = printRef.current;
+    invoiceElement.classList.add('invoice-exporting');
     try {
-      const dataUrl = await toPng(printRef.current, { backgroundColor: '#ffffff', style: { padding: '16px' } });
+      const dataUrl = await toPng(invoiceElement, {
+        backgroundColor: '#ffffff',
+        cacheBust: true,
+        pixelRatio: 2,
+        width: 760,
+        style: {
+          width: '760px',
+          maxWidth: 'none',
+          margin: '0',
+        },
+      });
       const link = document.createElement('a');
-      link.download = `Totalan-${customerName || 'Pelanggan'}.png`;
+      const safeName = (customerName.trim() || 'Reseller').replace(/[^a-zA-Z0-9-_]+/g, '-');
+      link.download = `Pre-Invoice-${safeName}.png`;
       link.href = dataUrl;
       link.click();
-    } catch (err) {
+    } catch {
       alert('Gagal mengekspor gambar.');
+    } finally {
+      invoiceElement.classList.remove('invoice-exporting');
     }
   };
 
@@ -262,12 +294,7 @@ export default function Totalan() {
         <>
           <h3 style={{ marginBottom: 'var(--spacing-2)' }}>Review Pesanan</h3>
           
-          <div ref={printRef} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-4)' }}>
-            {(customerName || customerPhone) && (
-              <div style={{ marginBottom: 'var(--spacing-2)', fontWeight: 'bold' }}>
-                Pelanggan: {customerName} {customerPhone}
-              </div>
-            )}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-4)' }}>
             {previewItems.map((item, idx) => {
               if (item.isIgnored) return null;
 
@@ -314,24 +341,75 @@ export default function Totalan() {
                 </div>
               );
             })}
-            
-            <div style={{ marginTop: 'var(--spacing-3)', paddingTop: 'var(--spacing-3)', borderTop: '2px dashed var(--color-border)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                <span>Total Pcs: {totals.totalQty} ({totals.tier})</span>
-                <span>Barang: Rp{totals.goodsTotal.toLocaleString('id-ID')}</span>
-              </div>
-              {shippingMode === 'prepaid' && shippingAmount !== null && (
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px' }}>
-                  <span>Ongkos Kirim</span>
-                  <span>Rp{shippingAmount.toLocaleString('id-ID')}</span>
-                </div>
-              )}
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '18px', marginTop: '8px', color: 'var(--color-primary-dark)' }}>
-                <span>Total Transfer</span>
-                <span>Rp{totals.transferTotal.toLocaleString('id-ID')}</span>
-              </div>
-            </div>
           </div>
+
+          {canSave && (
+            <section className="invoice-preview-shell" aria-label="Pratinjau gambar pre-invoice">
+              <div className="invoice-document" ref={printRef}>
+                <header className="invoice-header">
+                  <div>
+                    <div className="invoice-eyebrow">TOTALAN RESELLER</div>
+                    <h3>PRE-INVOICE</h3>
+                    <p>Ringkasan pesanan</p>
+                  </div>
+                  <div className="invoice-customer">
+                    <span>Nama Reseller</span>
+                    <strong>{customerName.trim() || 'Reseller'}</strong>
+                    {customerPhone.trim() && <small>{customerPhone.trim()}</small>}
+                  </div>
+                </header>
+
+                <div className="invoice-tier">
+                  Harga <strong>{tierLabel[totals.tier]}</strong> · Total {totals.totalQty} pcs
+                </div>
+
+                <table className="invoice-table">
+                  <thead>
+                    <tr>
+                      <th>Produk</th>
+                      <th>Harga ({tierLabel[totals.tier]})</th>
+                      <th>Qty</th>
+                      <th>Sub Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {validPricingItems.map(item => {
+                      const unitPrice = getPrice(item.product);
+                      return (
+                        <tr key={item.product.id}>
+                          <td>{item.product.name}</td>
+                          <td>{formatRupiah(unitPrice)}</td>
+                          <td>{item.qty}</td>
+                          <td>{formatRupiah(unitPrice * item.qty)}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+
+                <div className="invoice-summary">
+                  <div><span>Total Qty</span><strong>{totals.totalQty} pcs</strong></div>
+                  <div><span>Total Barang</span><strong>{formatRupiah(totals.goodsTotal)}</strong></div>
+                  <div>
+                    <span>Ongkos Kirim</span>
+                    <strong>
+                      {shippingMode === 'collect'
+                        ? shippingAmount === null ? 'Bayar di tempat' : `${formatRupiah(shippingAmount)} (di tempat)`
+                        : shippingAmount === null ? 'Belum termasuk' : formatRupiah(shippingAmount)}
+                    </strong>
+                  </div>
+                  <div className="invoice-grand-total">
+                    <span>{totals.isProvisional ? 'Total Sementara' : 'Total Transfer'}</span>
+                    <strong>{formatRupiah(totals.transferTotal)}</strong>
+                  </div>
+                </div>
+
+                <footer className="invoice-footer">
+                  Pre-invoice ini merupakan ringkasan pesanan dan bukan bukti pembayaran.
+                </footer>
+              </div>
+            </section>
+          )}
 
           <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: 'var(--spacing-3)', marginBottom: 'var(--spacing-5)' }}>
             <h3 style={{ marginBottom: 'var(--spacing-3)' }}>Ongkos Kirim (Opsional)</h3>

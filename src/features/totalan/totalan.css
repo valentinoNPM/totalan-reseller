@@ -1,0 +1,180 @@
+.invoice-preview-shell {
+  margin-bottom: var(--spacing-5);
+  overflow-x: auto;
+  border-radius: 16px;
+  background: #f7f4f5;
+  padding: 10px;
+}
+
+.invoice-document {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #eadde2;
+  border-radius: 14px;
+  background: #fff;
+  color: #252126;
+  font-family: Arial, Helvetica, sans-serif;
+  box-shadow: 0 8px 28px rgba(88, 53, 66, 0.09);
+}
+
+.invoice-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 30px 32px 26px;
+  border-bottom: 4px solid #f5b8cb;
+  background: linear-gradient(135deg, #fff8fa 0%, #fce8ef 100%);
+}
+
+.invoice-eyebrow {
+  margin-bottom: 5px;
+  color: #a23e61;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.8px;
+}
+
+.invoice-header h3 {
+  margin: 0;
+  color: #58283a;
+  font-size: 27px;
+  line-height: 1.1;
+  letter-spacing: .4px;
+}
+
+.invoice-header p {
+  margin-top: 6px;
+  color: #795e68;
+  font-size: 13px;
+}
+
+.invoice-customer {
+  min-width: 230px;
+  padding-left: 22px;
+  border-left: 1px solid #e4b8c8;
+  text-align: right;
+}
+
+.invoice-customer span,
+.invoice-customer small {
+  display: block;
+  color: #795e68;
+  font-size: 12px;
+}
+
+.invoice-customer strong {
+  display: block;
+  margin: 3px 0;
+  color: #3d2630;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+}
+
+.invoice-tier {
+  padding: 13px 32px;
+  background: #fffafb;
+  color: #72525e;
+  font-size: 13px;
+}
+
+.invoice-table {
+  width: calc(100% - 64px);
+  margin: 4px 32px 22px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 13px;
+}
+
+.invoice-table th {
+  padding: 12px 10px;
+  background: #f4bfd0;
+  color: #4f2635;
+  font-size: 11px;
+  letter-spacing: .35px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.invoice-table th:first-child { width: 39%; border-radius: 7px 0 0 7px; }
+.invoice-table th:nth-child(2) { width: 23%; }
+.invoice-table th:nth-child(3) { width: 10%; text-align: center; }
+.invoice-table th:last-child { width: 28%; border-radius: 0 7px 7px 0; }
+
+.invoice-table td {
+  padding: 13px 10px;
+  border-bottom: 1px solid #eee5e8;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.invoice-table td:nth-child(2),
+.invoice-table td:last-child {
+  white-space: nowrap;
+}
+
+.invoice-table td:nth-child(3) {
+  text-align: center;
+}
+
+.invoice-table td:last-child,
+.invoice-table th:last-child {
+  text-align: right;
+}
+
+.invoice-summary {
+  width: 390px;
+  max-width: calc(100% - 64px);
+  margin: 0 32px 26px auto;
+}
+
+.invoice-summary > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 6px 0;
+  color: #66525a;
+  font-size: 13px;
+}
+
+.invoice-summary strong {
+  color: #33262b;
+  text-align: right;
+}
+
+.invoice-summary .invoice-grand-total {
+  align-items: center;
+  margin-top: 7px;
+  padding: 13px 15px;
+  border-radius: 8px;
+  background: #653044;
+  color: #fff;
+}
+
+.invoice-grand-total strong {
+  color: #fff;
+  font-size: 19px;
+}
+
+.invoice-footer {
+  padding: 15px 32px;
+  background: #faf7f8;
+  color: #846d76;
+  font-size: 11px;
+  text-align: center;
+}
+
+@media (max-width: 520px) {
+  .invoice-document:not(.invoice-exporting) .invoice-header { gap: 12px; padding: 20px 16px 18px; }
+  .invoice-document:not(.invoice-exporting) .invoice-header h3 { font-size: 21px; }
+  .invoice-document:not(.invoice-exporting) .invoice-customer { min-width: 42%; padding-left: 12px; }
+  .invoice-document:not(.invoice-exporting) .invoice-customer strong { font-size: 15px; }
+  .invoice-document:not(.invoice-exporting) .invoice-tier { padding: 11px 16px; }
+  .invoice-document:not(.invoice-exporting) .invoice-table { width: calc(100% - 24px); margin: 4px 12px 18px; font-size: 10px; }
+  .invoice-document:not(.invoice-exporting) .invoice-table th,
+  .invoice-document:not(.invoice-exporting) .invoice-table td { padding: 9px 5px; }
+  .invoice-document:not(.invoice-exporting) .invoice-summary { max-width: calc(100% - 32px); margin: 0 16px 20px auto; }
+  .invoice-document:not(.invoice-exporting) .invoice-footer { padding: 13px 16px; }
+}
