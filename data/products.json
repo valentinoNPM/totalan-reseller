@@ -1,0 +1,749 @@
+[
+  {
+    "id": "product-001",
+    "name": "PDPJ STD",
+    "original_name": "PDPJ STD",
+    "reseller_price": 55000,
+    "wholesale_price": 53000,
+    "bulk_price": 52000,
+    "active": true
+  },
+  {
+    "id": "product-002",
+    "name": "PDPD STD",
+    "original_name": "PDPD STD",
+    "reseller_price": 43000,
+    "wholesale_price": 41000,
+    "bulk_price": 40000,
+    "active": true
+  },
+  {
+    "id": "product-003",
+    "name": "PDPJ JUMBO",
+    "original_name": "PDPJ JUMBO",
+    "reseller_price": 57000,
+    "wholesale_price": 55000,
+    "bulk_price": 54000,
+    "active": true
+  },
+  {
+    "id": "product-004",
+    "name": "PDPD JUMBO",
+    "original_name": "PDPD JUMBO",
+    "reseller_price": 47000,
+    "wholesale_price": 45000,
+    "bulk_price": 44000,
+    "active": true
+  },
+  {
+    "id": "product-005",
+    "name": "PJPJ JUMBO",
+    "original_name": "PJPJ JUMBO",
+    "reseller_price": 74000,
+    "wholesale_price": 72000,
+    "bulk_price": 71000,
+    "active": true
+  },
+  {
+    "id": "product-006",
+    "name": "PAJAMAS JUMBO",
+    "original_name": "PAJAMAS JUMBO",
+    "reseller_price": 80000,
+    "wholesale_price": 78000,
+    "bulk_price": 77000,
+    "active": true
+  },
+  {
+    "id": "product-007",
+    "name": "PAJAMAS RENDA BESAR",
+    "original_name": "PAJAMAS RENDA BESAR",
+    "reseller_price": 90000,
+    "wholesale_price": 88000,
+    "bulk_price": 87000,
+    "active": true
+  },
+  {
+    "id": "product-008",
+    "name": "PJPJ RUFFLE",
+    "original_name": "PJPJ RUFFLE",
+    "reseller_price": 74000,
+    "wholesale_price": 72000,
+    "bulk_price": 71000,
+    "active": true
+  },
+  {
+    "id": "product-009",
+    "name": "DASTER HABEL",
+    "original_name": "DASTER HABEL",
+    "reseller_price": 47000,
+    "wholesale_price": 45000,
+    "bulk_price": 44000,
+    "active": true
+  },
+  {
+    "id": "product-010",
+    "name": "DASTER SELUTUT",
+    "original_name": "DASTER SELUTUT",
+    "reseller_price": 39000,
+    "wholesale_price": 37000,
+    "bulk_price": 36000,
+    "active": true
+  },
+  {
+    "id": "product-011",
+    "name": "7/8 BUSUI",
+    "original_name": "SET 7/8 BUSUI",
+    "reseller_price": 62000,
+    "wholesale_price": 60000,
+    "bulk_price": 59000,
+    "active": true
+  },
+  {
+    "id": "product-012",
+    "name": "VNECK JMB",
+    "original_name": "SET VNECK JMB",
+    "reseller_price": 65000,
+    "wholesale_price": 63000,
+    "bulk_price": 62000,
+    "active": true
+  },
+  {
+    "id": "product-013",
+    "name": "VNECK PDPD MOTIF",
+    "original_name": "SET VNECK PDPD MOTIF",
+    "reseller_price": 52000,
+    "wholesale_price": 50000,
+    "bulk_price": 49000,
+    "active": true
+  },
+  {
+    "id": "product-014",
+    "name": "VNECK PDPD POLOS",
+    "original_name": "SET VNECK PDPD POLOS",
+    "reseller_price": 45000,
+    "wholesale_price": 43000,
+    "bulk_price": 42000,
+    "active": true
+  },
+  {
+    "id": "product-015",
+    "name": "VNECK PDPD LD130",
+    "original_name": "SET VNECK PDPD LD130",
+    "reseller_price": 64000,
+    "wholesale_price": 62000,
+    "bulk_price": 61000,
+    "active": true
+  },
+  {
+    "id": "product-016",
+    "name": "VNECK PDPJ LD130",
+    "original_name": "SET VNECK PDPJ LD130",
+    "reseller_price": 74000,
+    "wholesale_price": 72000,
+    "bulk_price": 71000,
+    "active": true
+  },
+  {
+    "id": "product-017",
+    "name": "VNECK KOMBI",
+    "original_name": "SET VNECK KOMBI",
+    "reseller_price": 68000,
+    "wholesale_price": 66000,
+    "bulk_price": 65000,
+    "active": true
+  },
+  {
+    "id": "product-018",
+    "name": "KIMONO JUMBO",
+    "original_name": "SET KIMONO JUMBO",
+    "reseller_price": 71000,
+    "wholesale_price": 69000,
+    "bulk_price": 68000,
+    "active": true
+  },
+  {
+    "id": "product-019",
+    "name": "KIMONO KOMBI",
+    "original_name": "SET KIMONO KOMBI",
+    "reseller_price": 82000,
+    "wholesale_price": 80000,
+    "bulk_price": 79000,
+    "active": true
+  },
+  {
+    "id": "product-020",
+    "name": "KIMMY",
+    "original_name": "SET KIMMY",
+    "reseller_price": 64000,
+    "wholesale_price": 62000,
+    "bulk_price": 61000,
+    "active": true
+  },
+  {
+    "id": "product-021",
+    "name": "RUFFLE JUMBO",
+    "original_name": "SET RUFFLE JUMBO",
+    "reseller_price": 66000,
+    "wholesale_price": 65000,
+    "bulk_price": 64000,
+    "active": true
+  },
+  {
+    "id": "product-022",
+    "name": "RUFFLE JUMBO POLOS",
+    "original_name": "SET RUFFLE JUMBO POLOS",
+    "reseller_price": 62000,
+    "wholesale_price": 60000,
+    "bulk_price": 59000,
+    "active": true
+  },
+  {
+    "id": "product-023",
+    "name": "CINTA JUMBO",
+    "original_name": "SET CINTA JUMBO",
+    "reseller_price": 60000,
+    "wholesale_price": 58000,
+    "bulk_price": 57000,
+    "active": true
+  },
+  {
+    "id": "product-024",
+    "name": "CINTA BUSUI/AIRA",
+    "original_name": "SET CINTA BUSUI/AIRA",
+    "reseller_price": 70000,
+    "wholesale_price": 68000,
+    "bulk_price": 67000,
+    "active": true
+  },
+  {
+    "id": "product-025",
+    "name": "CINTA STANDART",
+    "original_name": "SET CINTA STANDART",
+    "reseller_price": 58000,
+    "wholesale_price": 56000,
+    "bulk_price": 55000,
+    "active": true
+  },
+  {
+    "id": "product-026",
+    "name": "CINTA PDPD",
+    "original_name": "SET CINTA PDPD",
+    "reseller_price": 50000,
+    "wholesale_price": 48000,
+    "bulk_price": 47000,
+    "active": true
+  },
+  {
+    "id": "product-027",
+    "name": "MOANA",
+    "original_name": "SET MOANA",
+    "reseller_price": 65000,
+    "wholesale_price": 63000,
+    "bulk_price": 62000,
+    "active": true
+  },
+  {
+    "id": "product-028",
+    "name": "MOANA KOMBI",
+    "original_name": "SET MOANA KOMBI",
+    "reseller_price": 70000,
+    "wholesale_price": 68000,
+    "bulk_price": 67000,
+    "active": true
+  },
+  {
+    "id": "product-029",
+    "name": "CROP",
+    "original_name": "SET CROP",
+    "reseller_price": 53000,
+    "wholesale_price": 51000,
+    "bulk_price": 50000,
+    "active": true
+  },
+  {
+    "id": "product-030",
+    "name": "CELANA KULOT",
+    "original_name": "CELANA KULOT",
+    "reseller_price": 30000,
+    "wholesale_price": 29000,
+    "bulk_price": 28000,
+    "active": true
+  },
+  {
+    "id": "product-031",
+    "name": "DRESS NARRA",
+    "original_name": "DRESS NARRA",
+    "reseller_price": 60000,
+    "wholesale_price": 58000,
+    "bulk_price": 57000,
+    "active": true
+  },
+  {
+    "id": "product-032",
+    "name": "DRESS NAOMI",
+    "original_name": "DRESS NAOMI",
+    "reseller_price": 57000,
+    "wholesale_price": 55000,
+    "bulk_price": 54000,
+    "active": true
+  },
+  {
+    "id": "product-033",
+    "name": "DRESS HAVVA",
+    "original_name": "DRESS HAVVA",
+    "reseller_price": 60000,
+    "wholesale_price": 58000,
+    "bulk_price": 57000,
+    "active": true
+  },
+  {
+    "id": "product-034",
+    "name": "DRESS YOONA",
+    "original_name": "DRESS YOONA",
+    "reseller_price": 58000,
+    "wholesale_price": 56000,
+    "bulk_price": 55000,
+    "active": true
+  },
+  {
+    "id": "product-035",
+    "name": "DRESS JASMINE",
+    "original_name": "DRESS JASMINE",
+    "reseller_price": 50000,
+    "wholesale_price": 48000,
+    "bulk_price": 47000,
+    "active": true
+  },
+  {
+    "id": "product-036",
+    "name": "DRESS KIMORA",
+    "original_name": "DRESS KIMORA",
+    "reseller_price": 60000,
+    "wholesale_price": 58000,
+    "bulk_price": 57000,
+    "active": true
+  },
+  {
+    "id": "product-037",
+    "name": "YOONA PJPD JUMBO",
+    "original_name": "SET YOONA PJPD JUMBO",
+    "reseller_price": 75000,
+    "wholesale_price": 73000,
+    "bulk_price": 72000,
+    "active": true
+  },
+  {
+    "id": "product-038",
+    "name": "YOONA PJPD STD",
+    "original_name": "SET YOONA PJPD STD",
+    "reseller_price": 75000,
+    "wholesale_price": 73000,
+    "bulk_price": 72000,
+    "active": true
+  },
+  {
+    "id": "product-039",
+    "name": "YOONA PDPD",
+    "original_name": "SET YOONA PDPD",
+    "reseller_price": 63000,
+    "wholesale_price": 61000,
+    "bulk_price": 60000,
+    "active": true
+  },
+  {
+    "id": "product-040",
+    "name": "YOONA PJPJ",
+    "original_name": "SET YOONA PJPJ",
+    "reseller_price": 85000,
+    "wholesale_price": 83000,
+    "bulk_price": 82000,
+    "active": true
+  },
+  {
+    "id": "product-041",
+    "name": "DANIA PDPD",
+    "original_name": "SET DANIA PDPD",
+    "reseller_price": 62000,
+    "wholesale_price": 60000,
+    "bulk_price": 59000,
+    "active": true
+  },
+  {
+    "id": "product-042",
+    "name": "DANIA PJPD JUMBO",
+    "original_name": "SET DANIA PJPD JUMBO",
+    "reseller_price": 74000,
+    "wholesale_price": 72000,
+    "bulk_price": 71000,
+    "active": true
+  },
+  {
+    "id": "product-043",
+    "name": "DANIA PJPD STD",
+    "original_name": "SET DANIA PJPD STD",
+    "reseller_price": 74000,
+    "wholesale_price": 72000,
+    "bulk_price": 71000,
+    "active": true
+  },
+  {
+    "id": "product-044",
+    "name": "ADIVA",
+    "original_name": "SET ADIVA",
+    "reseller_price": 53000,
+    "wholesale_price": 51000,
+    "bulk_price": 50000,
+    "active": true
+  },
+  {
+    "id": "product-045",
+    "name": "LUCY PDPD",
+    "original_name": "SET LUCY PDPD",
+    "reseller_price": 60000,
+    "wholesale_price": 58000,
+    "bulk_price": 57000,
+    "active": true
+  },
+  {
+    "id": "product-046",
+    "name": "LUCY PJPD",
+    "original_name": "SET LUCY PJPD",
+    "reseller_price": 73000,
+    "wholesale_price": 71000,
+    "bulk_price": 70000,
+    "active": true
+  },
+  {
+    "id": "product-047",
+    "name": "POPPY",
+    "original_name": "SET POPPY",
+    "reseller_price": 74000,
+    "wholesale_price": 72000,
+    "bulk_price": 71000,
+    "active": true
+  },
+  {
+    "id": "product-048",
+    "name": "OLIVE JUMBO",
+    "original_name": "SET OLIVE JUMBO",
+    "reseller_price": 78000,
+    "wholesale_price": 76000,
+    "bulk_price": 75000,
+    "active": true
+  },
+  {
+    "id": "product-049",
+    "name": "OLIVE STD",
+    "original_name": "SET OLIVE STD",
+    "reseller_price": 78000,
+    "wholesale_price": 76000,
+    "bulk_price": 75000,
+    "active": true
+  },
+  {
+    "id": "product-050",
+    "name": "FEBBY",
+    "original_name": "SET FEBBY",
+    "reseller_price": 82000,
+    "wholesale_price": 80000,
+    "bulk_price": 79000,
+    "active": true
+  },
+  {
+    "id": "product-051",
+    "name": "KALUNA PJPD",
+    "original_name": "SET KALUNA PJPD",
+    "reseller_price": 72000,
+    "wholesale_price": 70000,
+    "bulk_price": 69000,
+    "active": true
+  },
+  {
+    "id": "product-052",
+    "name": "KALUNA PDPD",
+    "original_name": "SET KALUNA PDPD",
+    "reseller_price": 62000,
+    "wholesale_price": 60000,
+    "bulk_price": 59000,
+    "active": true
+  },
+  {
+    "id": "product-053",
+    "name": "SHELLA PDPD",
+    "original_name": "SET SHELLA PDPD",
+    "reseller_price": 67000,
+    "wholesale_price": 65000,
+    "bulk_price": 64000,
+    "active": true
+  },
+  {
+    "id": "product-054",
+    "name": "SHELLA PJPD",
+    "original_name": "SET SHELLA PJPD",
+    "reseller_price": 82000,
+    "wholesale_price": 80000,
+    "bulk_price": 79000,
+    "active": true
+  },
+  {
+    "id": "product-055",
+    "name": "SHELLA PJPJ",
+    "original_name": "SET SHELLA PJPJ",
+    "reseller_price": 90000,
+    "wholesale_price": 88000,
+    "bulk_price": 87000,
+    "active": true
+  },
+  {
+    "id": "product-056",
+    "name": "ZIZI PDPD",
+    "original_name": "SET ZIZI PDPD",
+    "reseller_price": 58000,
+    "wholesale_price": 56000,
+    "bulk_price": 55000,
+    "active": true
+  },
+  {
+    "id": "product-057",
+    "name": "ZIZI PDPJ",
+    "original_name": "SET ZIZI PDPJ",
+    "reseller_price": 68000,
+    "wholesale_price": 66000,
+    "bulk_price": 65000,
+    "active": true
+  },
+  {
+    "id": "product-058",
+    "name": "HAGIA PDPD",
+    "original_name": "SET HAGIA PDPD",
+    "reseller_price": 57000,
+    "wholesale_price": 55000,
+    "bulk_price": 54000,
+    "active": true
+  },
+  {
+    "id": "product-059",
+    "name": "HAGIA PDPJ",
+    "original_name": "SET HAGIA PDPJ",
+    "reseller_price": 70000,
+    "wholesale_price": 68000,
+    "bulk_price": 67000,
+    "active": true
+  },
+  {
+    "id": "product-060",
+    "name": "ERIKA",
+    "original_name": "SET ERIKA",
+    "reseller_price": 92000,
+    "wholesale_price": 90000,
+    "bulk_price": 89000,
+    "active": true
+  },
+  {
+    "id": "product-061",
+    "name": "ROSY",
+    "original_name": "SET ROSY",
+    "reseller_price": 78000,
+    "wholesale_price": 76000,
+    "bulk_price": 75000,
+    "active": true
+  },
+  {
+    "id": "product-062",
+    "name": "CANTIKA",
+    "original_name": "SET CANTIKA",
+    "reseller_price": 75000,
+    "wholesale_price": 73000,
+    "bulk_price": 72000,
+    "active": true
+  },
+  {
+    "id": "product-063",
+    "name": "RIBBON",
+    "original_name": "SET RIBBON",
+    "reseller_price": 78000,
+    "wholesale_price": 76000,
+    "bulk_price": 75000,
+    "active": true
+  },
+  {
+    "id": "product-064",
+    "name": "SALSA",
+    "original_name": "SET SALSA",
+    "reseller_price": 80000,
+    "wholesale_price": 78000,
+    "bulk_price": 77000,
+    "active": true
+  },
+  {
+    "id": "product-065",
+    "name": "TASYA",
+    "original_name": "SET TASYA",
+    "reseller_price": 75000,
+    "wholesale_price": 73000,
+    "bulk_price": 72000,
+    "active": true
+  },
+  {
+    "id": "product-066",
+    "name": "AMANDA",
+    "original_name": "SET AMANDA",
+    "reseller_price": 74000,
+    "wholesale_price": 72000,
+    "bulk_price": 71000,
+    "active": true
+  },
+  {
+    "id": "product-067",
+    "name": "JELITA PJPD",
+    "original_name": "SET JELITA PJPD",
+    "reseller_price": 73000,
+    "wholesale_price": 71000,
+    "bulk_price": 70000,
+    "active": true
+  },
+  {
+    "id": "product-068",
+    "name": "JELITA PDPD",
+    "original_name": "SET JELITA PDPD",
+    "reseller_price": 60000,
+    "wholesale_price": 58000,
+    "bulk_price": 57000,
+    "active": true
+  },
+  {
+    "id": "product-069",
+    "name": "DRESS JELITA",
+    "original_name": "DRESS JELITA",
+    "reseller_price": 62000,
+    "wholesale_price": 60000,
+    "bulk_price": 59000,
+    "active": true
+  },
+  {
+    "id": "product-070",
+    "name": "RUMI",
+    "original_name": "SET RUMI",
+    "reseller_price": 85000,
+    "wholesale_price": 83000,
+    "bulk_price": 82000,
+    "active": true
+  },
+  {
+    "id": "product-071",
+    "name": "HANA",
+    "original_name": "SET HANA",
+    "reseller_price": 82000,
+    "wholesale_price": 80000,
+    "bulk_price": 79000,
+    "active": true
+  },
+  {
+    "id": "product-072",
+    "name": "ROK HANUM",
+    "original_name": "SET ROK HANUM",
+    "reseller_price": 96000,
+    "wholesale_price": 94000,
+    "bulk_price": 93000,
+    "active": true
+  },
+  {
+    "id": "product-073",
+    "name": "ANAK M",
+    "original_name": "SET ANAK M",
+    "reseller_price": 38000,
+    "wholesale_price": 36000,
+    "bulk_price": 35000,
+    "active": true
+  },
+  {
+    "id": "product-074",
+    "name": "ANAK M cp",
+    "original_name": "SET ANAK M cp",
+    "reseller_price": 42000,
+    "wholesale_price": 40000,
+    "bulk_price": 39000,
+    "active": true
+  },
+  {
+    "id": "product-075",
+    "name": "ANAK L",
+    "original_name": "SET ANAK L",
+    "reseller_price": 38000,
+    "wholesale_price": 36000,
+    "bulk_price": 35000,
+    "active": true
+  },
+  {
+    "id": "product-076",
+    "name": "ANAK L cp",
+    "original_name": "SET ANAK L cp",
+    "reseller_price": 42000,
+    "wholesale_price": 40000,
+    "bulk_price": 39000,
+    "active": true
+  },
+  {
+    "id": "product-077",
+    "name": "ANAK XL",
+    "original_name": "SET ANAK XL",
+    "reseller_price": 42000,
+    "wholesale_price": 40000,
+    "bulk_price": 39000,
+    "active": true
+  },
+  {
+    "id": "product-078",
+    "name": "ANAK XL cp",
+    "original_name": "SET ANAK XL cp",
+    "reseller_price": 46000,
+    "wholesale_price": 44000,
+    "bulk_price": 43000,
+    "active": true
+  },
+  {
+    "id": "product-079",
+    "name": "ANAK XXL",
+    "original_name": "SET ANAK XXL",
+    "reseller_price": 48000,
+    "wholesale_price": 46000,
+    "bulk_price": 45000,
+    "active": true
+  },
+  {
+    "id": "product-080",
+    "name": "ANAK XXL cp",
+    "original_name": "SET ANAK XXL cp",
+    "reseller_price": 52000,
+    "wholesale_price": 50000,
+    "bulk_price": 49000,
+    "active": true
+  },
+  {
+    "id": "product-081",
+    "name": "GAMIS ZAYA",
+    "original_name": "GAMIS ZAYA",
+    "reseller_price": 70000,
+    "wholesale_price": 68000,
+    "bulk_price": 67000,
+    "active": true
+  },
+  {
+    "id": "product-082",
+    "name": "GAMIS SERAYA",
+    "original_name": "GAMIS SERAYA",
+    "reseller_price": 95000,
+    "wholesale_price": 93000,
+    "bulk_price": 92000,
+    "active": true
+  },
+  {
+    "id": "product-083",
+    "name": "GAMIS SELINA",
+    "original_name": "GAMIS SELINA",
+    "reseller_price": 86000,
+    "wholesale_price": 84000,
+    "bulk_price": 83000,
+    "active": true
+  }
+]

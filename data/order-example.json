@@ -1,0 +1,85 @@
+{
+  "raw_text": "Febby 50\nDania pdk 18\nRosy 16\nHana 33\nKimono Kombi 13\nHagia pdk 10\nYoona pdk 12\nAnak M 17\nAnak L 11\nAnak XL 16\nAnak XXL 12",
+  "expected_tier": "partai",
+  "expected_qty": 208,
+  "expected_goods_total": 13250000,
+  "items": [
+    {
+      "product_id": "product-050",
+      "name": "FEBBY",
+      "qty": 50,
+      "unit_price": 79000,
+      "line_total": 3950000
+    },
+    {
+      "product_id": "product-041",
+      "name": "DANIA PDPD",
+      "qty": 18,
+      "unit_price": 59000,
+      "line_total": 1062000
+    },
+    {
+      "product_id": "product-061",
+      "name": "ROSY",
+      "qty": 16,
+      "unit_price": 75000,
+      "line_total": 1200000
+    },
+    {
+      "product_id": "product-071",
+      "name": "HANA",
+      "qty": 33,
+      "unit_price": 79000,
+      "line_total": 2607000
+    },
+    {
+      "product_id": "product-019",
+      "name": "KIMONO KOMBI",
+      "qty": 13,
+      "unit_price": 79000,
+      "line_total": 1027000
+    },
+    {
+      "product_id": "product-058",
+      "name": "HAGIA PDPD",
+      "qty": 10,
+      "unit_price": 54000,
+      "line_total": 540000
+    },
+    {
+      "product_id": "product-039",
+      "name": "YOONA PDPD",
+      "qty": 12,
+      "unit_price": 60000,
+      "line_total": 720000
+    },
+    {
+      "product_id": "product-073",
+      "name": "ANAK M",
+      "qty": 17,
+      "unit_price": 35000,
+      "line_total": 595000
+    },
+    {
+      "product_id": "product-075",
+      "name": "ANAK L",
+      "qty": 11,
+      "unit_price": 35000,
+      "line_total": 385000
+    },
+    {
+      "product_id": "product-077",
+      "name": "ANAK XL",
+      "qty": 16,
+      "unit_price": 39000,
+      "line_total": 624000
+    },
+    {
+      "product_id": "product-079",
+      "name": "ANAK XXL",
+      "qty": 12,
+      "unit_price": 45000,
+      "line_total": 540000
+    }
+  ]
+}
