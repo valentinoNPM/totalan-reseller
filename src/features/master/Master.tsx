@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { Edit2, Save, X } from 'lucide-react';
+import { Edit2, Save, X, Plus } from 'lucide-react';
 
 interface Product {
   id: string;
@@ -20,6 +20,51 @@ export default function Master() {
   // Edit state
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<Partial<Product>>({});
+  
+  // Add state
+  const [isAdding, setIsAdding] = useState(false);
+  const [addForm, setAddForm] = useState<Partial<Product>>({ active: true });
+
+  const handleAddClick = () => {
+    setIsAdding(true);
+    setAddForm({ active: true });
+  };
+
+  const handleSaveNew = async () => {
+    if (!addForm.name) {
+      alert('Nama produk tidak boleh kosong');
+      return;
+    }
+
+    const normalized_name = addForm.name.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+    
+    // Check if exists
+    if (products.some(p => p.normalized_name === normalized_name)) {
+      alert('Produk dengan nama tersebut sudah ada!');
+      return;
+    }
+
+    const { error } = await supabase
+      .from('products')
+      .insert({
+        id: 'product-' + Math.random().toString(36).substr(2, 9),
+        name: addForm.name.trim().toUpperCase(),
+        original_name: addForm.name.trim().toUpperCase(),
+        normalized_name,
+        reseller_price: addForm.reseller_price || 0,
+        wholesale_price: addForm.wholesale_price || 0,
+        bulk_price: addForm.bulk_price || 0,
+        active: addForm.active !== false
+      });
+
+    if (error) {
+      alert('Gagal menambah produk: ' + error.message);
+      return;
+    }
+
+    setIsAdding(false);
+    fetchProducts();
+  };
 
   useEffect(() => {
     fetchProducts();
@@ -88,7 +133,80 @@ export default function Master() {
       {loading ? (
         <p>Memuat...</p>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--spacing-3)' }}>
+          // -- Insert new section here (Start)
+          {isAdding ? (
+            <div style={{
+              border: '2px solid var(--color-primary)',
+              padding: 'var(--spacing-3)',
+              borderRadius: 'var(--radius-md)',
+              backgroundColor: 'var(--color-bg)',
+              marginBottom: 'var(--spacing-4)'
+            }}>
+              <div style={{ fontWeight: 'bold', marginBottom: 'var(--spacing-3)' }}>Tambah Produk Baru</div>
+              <div style={{ display: 'grid', gap: 'var(--spacing-2)', gridTemplateColumns: '1fr 1fr' }}>
+                <div style={{ gridColumn: '1 / -1' }}>
+                  <label style={{ fontSize: '12px' }}>Nama Produk (Singkat & Unik)</label>
+                  <input 
+                    type="text" 
+                    placeholder="Misal: DASTER JUMBO"
+                    value={addForm.name || ''}
+                    onChange={e => setAddForm({...addForm, name: e.target.value.toUpperCase()})}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: '12px' }}>Reseller</label>
+                  <input 
+                    type="number" 
+                    placeholder="0"
+                    value={addForm.reseller_price || ''}
+                    onChange={e => setAddForm({...addForm, reseller_price: parseInt(e.target.value) || 0})}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: '12px' }}>Grosir</label>
+                  <input 
+                    type="number" 
+                    placeholder="0"
+                    value={addForm.wholesale_price || ''}
+                    onChange={e => setAddForm({...addForm, wholesale_price: parseInt(e.target.value) || 0})}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: '12px' }}>Partai</label>
+                  <input 
+                    type="number" 
+                    placeholder="0"
+                    value={addForm.bulk_price || ''}
+                    onChange={e => setAddForm({...addForm, bulk_price: parseInt(e.target.value) || 0})}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: '12px' }}>Status</label>
+                  <select 
+                    value={addForm.active ? 'active' : 'inactive'}
+                    onChange={e => setAddForm({...addForm, active: e.target.value === 'active'})}
+                  >
+                    <option value="active">Aktif</option>
+                    <option value="inactive">Nonaktif</option>
+                  </select>
+                </div>
+                <div style={{ gridColumn: '1 / -1', display: 'flex', gap: 'var(--spacing-2)', marginTop: 'var(--spacing-2)' }}>
+                  <button className="primary" onClick={handleSaveNew} style={{ flex: 1, padding: '8px', minHeight: 'auto' }}>
+                    <Save size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }}/> Tambah
+                  </button>
+                  <button onClick={() => setIsAdding(false)} style={{ flex: 1, padding: '8px', minHeight: 'auto' }}>
+                    <X size={16} style={{ verticalAlign: 'middle', marginRight: '4px' }}/> Batal
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <button className="primary" onClick={handleAddClick} style={{ marginBottom: 'var(--spacing-4)', display: 'flex', justifyContent: 'center', gap: 'var(--spacing-2)' }}>
+              <Plus size={16} /> Tambah Produk Baru
+            </button>
+          )}
+          // -- Insert new section here (End)
+
           {products.map(p => {
             const isEditing = editingId === p.id;
             return (
