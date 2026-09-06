@@ -6,6 +6,12 @@
   padding: 10px;
 }
 
+.shipping-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--spacing-3);
+}
+
 .invoice-document {
   width: 100%;
   max-width: 760px;
@@ -167,6 +173,7 @@
 }
 
 @media (max-width: 520px) {
+  .shipping-fields { grid-template-columns: 1fr; }
   .invoice-document:not(.invoice-exporting) .invoice-header { gap: 12px; padding: 20px 16px 18px; }
   .invoice-document:not(.invoice-exporting) .invoice-header h3 { font-size: 21px; }
   .invoice-document:not(.invoice-exporting) .invoice-customer { min-width: 42%; padding-left: 12px; }

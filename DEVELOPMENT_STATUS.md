@@ -25,6 +25,7 @@ M7: DONE. Technical verification: PASS (Playwright tests pass). User acceptance:
 - **M5**: Riwayat & Cetak. Perubahan: UI History order, `@media print` CSS. Verifikasi: TSC PASS.
 - **M6**: Ekspor Totalan. Perubahan: Menambahkan `html-to-image` dan copy ke clipboard. Verifikasi: Build PASS, logika DOM siap.
 - **M6 — penyempurnaan pre-invoice (6 September 2026)**: Area gambar dipisahkan dari kontrol review dan diubah menjadi pre-invoice profesional. Header memuat nama reseller/HP, tabel memuat produk, harga sesuai tier, qty dan subtotal, diikuti total qty, total barang, ongkir dan total transfer. Ekspor PNG memakai kanvas 760 px dan pixel ratio 2 agar teks lebih tajam. Verifikasi: `npm run build` PASS; `npm run lint` PASS tanpa error (peringatan lama tetap tercatat). User test dan inspeksi hasil unduhan pada perangkat pengguna: PENDING.
+- **M6 — data pengiriman opsional (6 September 2026)**: Form totalan menerima ekspedisi teks dan ongkir opsional. Ekspedisi ikut tersimpan atomik pada revisi serta ditampilkan di teks salinan dan pre-invoice; ongkir kosong dipertahankan sebagai `null`, sedangkan ongkir prepaid yang diisi ditambahkan ke total transfer. Verifikasi: `npm run build` PASS; `npx vitest run src/domain/pricing.test.ts` PASS (3 test); lint terarah tanpa error (satu peringatan lama pada inisialisasi katalog). Migrasi database nyata dan user test: PENDING.
 - **M7**: Automation test. Perubahan: Setup Playwright, test Login. Verifikasi: `npx playwright test` PASS.
 
 ## Laporan Hasil Verifikasi Lokal (Pre-Deployment)

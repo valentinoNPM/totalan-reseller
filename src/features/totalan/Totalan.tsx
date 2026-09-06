@@ -32,6 +32,7 @@ export default function Totalan() {
   
   const [shippingMode, setShippingMode] = useState<'prepaid'|'collect'>('prepaid');
   const [shippingAmountText, setShippingAmountText] = useState('');
+  const [courier, setCourier] = useState('');
   
   const [catalog, setCatalog] = useState<CatalogProduct[]>([]);
   const [aliases, setAliases] = useState<Record<string, string>>({}); // alias -> canonical id
@@ -165,6 +166,9 @@ export default function Totalan() {
     if (shippingMode === 'prepaid' && shippingAmount !== null) {
       lines.push(`Ongkos Kirim: Rp${shippingAmount.toLocaleString('id-ID')}`);
     }
+    if (courier.trim()) {
+      lines.push(`Ekspedisi: ${courier.trim()}`);
+    }
     lines.push(`Total Transfer: Rp${totals.transferTotal.toLocaleString('id-ID')}`);
 
     try {
@@ -219,7 +223,8 @@ export default function Totalan() {
       qty_total: totals.totalQty,
       goods_total: totals.goodsTotal,
       shipping_mode: shippingMode,
-      shipping_amount: shippingAmount || 0,
+      shipping_amount: shippingAmount,
+      courier: courier.trim() || null,
       transfer_total: totals.transferTotal,
       total_is_provisional: totals.isProvisional,
       raw_text: rawText,
@@ -246,6 +251,8 @@ export default function Totalan() {
       setRawText('');
       setCustomerName('');
       setCustomerPhone('');
+      setCourier('');
+      setShippingAmountText('');
       setHasPreview(false);
     }
   };
@@ -361,6 +368,7 @@ export default function Totalan() {
 
                 <div className="invoice-tier">
                   Harga <strong>{tierLabel[totals.tier]}</strong> · Total {totals.totalQty} pcs
+                  {courier.trim() && <> · Ekspedisi <strong>{courier.trim()}</strong></>}
                 </div>
 
                 <table className="invoice-table">
@@ -412,12 +420,20 @@ export default function Totalan() {
           )}
 
           <div style={{ border: '1px solid var(--color-border)', borderRadius: 'var(--radius-md)', padding: 'var(--spacing-3)', marginBottom: 'var(--spacing-5)' }}>
-            <h3 style={{ marginBottom: 'var(--spacing-3)' }}>Ongkos Kirim (Opsional)</h3>
-            <div style={{ display: 'flex', gap: 'var(--spacing-3)' }}>
+            <h3 style={{ marginBottom: 'var(--spacing-3)' }}>Pengiriman (Opsional)</h3>
+            <div className="shipping-fields">
+              <input
+                type="text"
+                placeholder="Ekspedisi, contoh: J&amp;T"
+                aria-label="Ekspedisi"
+                value={courier}
+                onChange={e => setCourier(e.target.value)}
+                maxLength={100}
+              />
               <select 
                 value={shippingMode} 
                 onChange={e => setShippingMode(e.target.value as any)}
-                style={{ flex: 1 }}
+                aria-label="Cara bayar ongkir"
               >
                 <option value="prepaid">Dibayar Langsung (Prepaid)</option>
                 <option value="collect">Bayar di Tempat (Collect)</option>
@@ -427,8 +443,9 @@ export default function Totalan() {
                 placeholder="Nominal (opsional)" 
                 value={shippingAmountText}
                 onChange={e => setShippingAmountText(e.target.value)}
-                style={{ flex: 1 }}
+                aria-label="Ongkos kirim"
                 inputMode="numeric"
+                min="0"
               />
             </div>
             {shippingMode === 'collect' && shippingAmount === null && (
