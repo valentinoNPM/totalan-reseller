@@ -218,7 +218,7 @@ export default function Totalan() {
       });
       const link = document.createElement('a');
       const safeName = (customerName.trim() || 'Reseller').replace(/[^a-zA-Z0-9-_]+/g, '-');
-      link.download = `Pre-Invoice-${safeName}.png`;
+      link.download = `Totalan-${safeName}.png`;
       link.href = dataUrl;
       link.click();
     } catch {
@@ -434,8 +434,7 @@ export default function Totalan() {
               <div className="invoice-document" ref={printRef}>
                 <header className="invoice-header">
                   <div>
-                    <div className="invoice-eyebrow">TOTALAN RESELLER</div>
-                    <h3>PRE-INVOICE</h3>
+                    <h3>TOTALAN RESELLER</h3>
                     <p>Ringkasan pesanan</p>
                   </div>
                   <div className="invoice-customer">
@@ -498,7 +497,7 @@ export default function Totalan() {
                 </div>
 
                 <footer className="invoice-footer">
-                  Pre-invoice ini merupakan ringkasan pesanan dan bukan bukti pembayaran.
+                  Totalan ini merupakan ringkasan pesanan dan bukan bukti pembayaran.
                 </footer>
               </div>
             </section>

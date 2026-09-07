@@ -6,7 +6,7 @@ test('PNG export uses the full fixed-width invoice layout on a phone viewport', 
     <div class="invoice-preview-shell">
       <div class="invoice-document invoice-exporting">
         <header class="invoice-header">
-          <div><h3>PRE-INVOICE</h3></div>
+          <div><h3>TOTALAN RESELLER</h3></div>
           <div class="invoice-customer"><strong>Reseller</strong></div>
         </header>
         <table class="invoice-table">
