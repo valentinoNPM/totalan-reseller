@@ -85,6 +85,7 @@ CREATE TABLE public.order_revisions (
   shipping_amount bigint CHECK (shipping_amount >= 0),
   courier text,
   service text,
+  down_payment_amount bigint DEFAULT 0 NOT NULL CHECK (down_payment_amount >= 0),
   transfer_total bigint NOT NULL CHECK (transfer_total >= 0),
   total_is_provisional boolean DEFAULT false NOT NULL,
   actor_id uuid REFERENCES auth.users(id) ON DELETE RESTRICT NOT NULL,
@@ -175,4 +176,3 @@ CREATE POLICY staff_insert_changes ON public.product_changes FOR INSERT TO authe
 
 -- However, for saving orders, it says: "Direct write orders/revisions/items/save_requests ditolak; gunakan RPC terjaga."
 -- So no INSERT/UPDATE policies for orders tables.
-

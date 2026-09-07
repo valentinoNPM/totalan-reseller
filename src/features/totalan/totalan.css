@@ -12,6 +12,24 @@
   gap: var(--spacing-3);
 }
 
+.down-payment-field {
+  display: grid;
+  grid-template-columns: minmax(110px, .35fr) 1fr;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-3);
+}
+
+.down-payment-field label {
+  font-weight: 600;
+}
+
+.field-error {
+  margin-top: var(--spacing-2);
+  color: var(--color-error);
+  font-size: 12px;
+}
+
 .invoice-document {
   width: 100%;
   max-width: 760px;
@@ -183,6 +201,7 @@
 
 @media (max-width: 520px) {
   .shipping-fields { grid-template-columns: 1fr; }
+  .down-payment-field { grid-template-columns: 1fr; gap: var(--spacing-1); }
   .invoice-document:not(.invoice-exporting) .invoice-header { gap: 12px; padding: 20px 16px 18px; }
   .invoice-document:not(.invoice-exporting) .invoice-header h3 { font-size: 21px; }
   .invoice-document:not(.invoice-exporting) .invoice-customer { min-width: 42%; padding-left: 12px; }

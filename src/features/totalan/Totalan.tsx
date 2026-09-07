@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo, useRef } from 'react';
 import { supabase } from '../../lib/supabase';
 import { parseOrderText, type ParsedLine } from '../../domain/parser';
-import { calculateOrderTotals, type PricingProduct } from '../../domain/pricing';
+import { calculateOrderTotals, calculateRemainingPayment, type PricingProduct } from '../../domain/pricing';
 import { Trash2, Copy, Image as ImageIcon } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import './totalan.css';
@@ -33,6 +33,7 @@ export default function Totalan() {
   const [shippingMode, setShippingMode] = useState<'prepaid'|'collect'>('prepaid');
   const [shippingAmountText, setShippingAmountText] = useState('');
   const [courier, setCourier] = useState('');
+  const [downPaymentText, setDownPaymentText] = useState('');
   
   const [catalog, setCatalog] = useState<CatalogProduct[]>([]);
   const [aliases, setAliases] = useState<Record<string, string>>({}); // alias -> canonical id
@@ -133,6 +134,7 @@ export default function Totalan() {
   };
 
   const shippingAmount = shippingAmountText === '' ? null : parseInt(shippingAmountText, 10) || 0;
+  const downPayment = downPaymentText === '' ? 0 : parseInt(downPaymentText, 10) || 0;
 
   const validPricingItems = useMemo(() => {
     return previewItems
@@ -144,6 +146,8 @@ export default function Totalan() {
   }, [previewItems]);
 
   const totals = calculateOrderTotals(validPricingItems, shippingMode, shippingAmount);
+  const remainingPayment = calculateRemainingPayment(totals.transferTotal, downPayment);
+  const hasInvalidDownPayment = downPayment < 0 || downPayment > totals.transferTotal;
 
   const getPrice = (product: CatalogProduct) => product[
     totals.tier === 'partai'
@@ -154,7 +158,7 @@ export default function Totalan() {
   ];
 
   const hasErrors = previewItems.some(i => !i.isIgnored && (!i.isValid || !i.catalogProduct));
-  const canSave = hasPreview && !hasErrors && validPricingItems.length > 0;
+  const canSave = hasPreview && !hasErrors && !hasInvalidDownPayment && validPricingItems.length > 0;
 
   const handleCopyText = async () => {
     const lines = validPricingItems.map(item => 
@@ -169,7 +173,13 @@ export default function Totalan() {
     if (courier.trim()) {
       lines.push(`Ekspedisi: ${courier.trim()}`);
     }
-    lines.push(`Total Transfer: Rp${totals.transferTotal.toLocaleString('id-ID')}`);
+    lines.push(`Total Pesanan: ${formatRupiah(totals.transferTotal)}`);
+    if (downPayment > 0) {
+      lines.push(`DP: ${formatRupiah(downPayment)}`);
+      lines.push(`Sisa Pembayaran: ${formatRupiah(remainingPayment)}`);
+    } else {
+      lines.push(`Total Transfer: ${formatRupiah(remainingPayment)}`);
+    }
 
     try {
       await navigator.clipboard.writeText(lines.join('\n'));
@@ -236,7 +246,8 @@ export default function Totalan() {
       shipping_mode: shippingMode,
       shipping_amount: shippingAmount,
       courier: courier.trim() || null,
-      transfer_total: totals.transferTotal,
+      down_payment_amount: downPayment,
+      transfer_total: remainingPayment,
       total_is_provisional: totals.isProvisional,
       raw_text: rawText,
       items: validPricingItems.map((item, idx) => ({
@@ -264,6 +275,7 @@ export default function Totalan() {
       setCustomerPhone('');
       setCourier('');
       setShippingAmountText('');
+      setDownPaymentText('');
       setHasPreview(false);
     }
   };
@@ -317,6 +329,21 @@ export default function Totalan() {
             min="0"
           />
         </div>
+        <div className="down-payment-field">
+          <label htmlFor="down-payment">DP (opsional)</label>
+          <input
+            id="down-payment"
+            type="number"
+            placeholder="Nominal DP"
+            value={downPaymentText}
+            onChange={e => setDownPaymentText(e.target.value)}
+            inputMode="numeric"
+            min="0"
+          />
+        </div>
+        {hasInvalidDownPayment && (
+          <div className="field-error">DP harus antara Rp0 dan total pembayaran.</div>
+        )}
         {shippingMode === 'collect' && shippingAmount === null && (
           <div style={{ fontSize: '12px', marginTop: 'var(--spacing-2)', color: 'var(--color-text-light)' }}>
             Ongkir akan mengikuti tagihan ekspedisi saat diterima.
@@ -458,9 +485,15 @@ export default function Totalan() {
                         : shippingAmount === null ? 'Belum termasuk' : formatRupiah(shippingAmount)}
                     </strong>
                   </div>
+                  {downPayment > 0 && (
+                    <>
+                      <div><span>Total Pesanan</span><strong>{formatRupiah(totals.transferTotal)}</strong></div>
+                      <div><span>DP</span><strong>- {formatRupiah(downPayment)}</strong></div>
+                    </>
+                  )}
                   <div className="invoice-grand-total">
-                    <span>{totals.isProvisional ? 'Total Sementara' : 'Total Transfer'}</span>
-                    <strong>{formatRupiah(totals.transferTotal)}</strong>
+                    <span>{downPayment > 0 ? 'Sisa Pembayaran' : totals.isProvisional ? 'Total Sementara' : 'Total Transfer'}</span>
+                    <strong>{formatRupiah(remainingPayment)}</strong>
                   </div>
                 </div>
 
@@ -487,9 +520,9 @@ export default function Totalan() {
               <span>Barang: Rp{totals.goodsTotal.toLocaleString('id-ID')}</span>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--spacing-3)' }}>
-              <strong>Transfer:</strong>
+              <strong>{downPayment > 0 ? 'Sisa Pembayaran:' : 'Transfer:'}</strong>
               <strong style={{ fontSize: '20px', color: 'var(--color-primary-dark)' }}>
-                Rp{totals.transferTotal.toLocaleString('id-ID')}
+                {formatRupiah(remainingPayment)}
               </strong>
             </div>
             <div style={{ display: 'flex', gap: 'var(--spacing-2)', marginBottom: 'var(--spacing-2)' }}>
@@ -511,6 +544,11 @@ export default function Totalan() {
             {hasErrors && (
               <div style={{ color: 'var(--color-error)', fontSize: '12px', marginTop: 'var(--spacing-2)', textAlign: 'center' }}>
                 Ada baris bermasalah, perbaiki atau hapus sebelum menyimpan.
+              </div>
+            )}
+            {hasInvalidDownPayment && (
+              <div style={{ color: 'var(--color-error)', fontSize: '12px', marginTop: 'var(--spacing-2)', textAlign: 'center' }}>
+                DP harus antara Rp0 dan total pembayaran.
               </div>
             )}
           </div>

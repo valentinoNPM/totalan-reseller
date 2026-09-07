@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { calculateTier, calculateOrderTotals, type PricingProduct } from './pricing';
+import { calculateTier, calculateOrderTotals, calculateRemainingPayment, type PricingProduct } from './pricing';
 
 describe('Pricing Domain', () => {
   it('calculates tier correctly', () => {
@@ -43,5 +43,10 @@ describe('Pricing Domain', () => {
     expect(result.tier).toBe('grosir');
     expect(result.goodsTotal).toBe(12 * 53000);
     expect(result.transferTotal).toBe(12 * 53000); // ongkir collect tidak ditambah ke transfer
+  });
+
+  it('subtracts DP from the total payment', () => {
+    expect(calculateRemainingPayment(585000, 100000)).toBe(485000);
+    expect(calculateRemainingPayment(585000, 0)).toBe(585000);
   });
 });

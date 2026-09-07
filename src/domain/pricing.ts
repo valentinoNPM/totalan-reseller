@@ -61,3 +61,7 @@ export function calculateOrderTotals(
     isProvisional
   };
 }
+
+export function calculateRemainingPayment(transferTotal: number, downPayment: number): number {
+  return transferTotal - downPayment;
+}
