@@ -184,14 +184,25 @@ export default function Totalan() {
     const invoiceElement = printRef.current;
     invoiceElement.classList.add('invoice-exporting');
     try {
+      // Mobile browsers need a render frame before html-to-image reads the
+      // fixed-width export layout. Without this, it can clone the old narrow
+      // layout into a 760px canvas and leave a large blank area on the right.
+      await new Promise<void>((resolve) => {
+        requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+      });
+
+      const exportHeight = invoiceElement.scrollHeight;
       const dataUrl = await toPng(invoiceElement, {
         backgroundColor: '#ffffff',
         cacheBust: true,
         pixelRatio: 2,
         width: 760,
+        height: exportHeight,
         style: {
           width: '760px',
+          minWidth: '760px',
           maxWidth: 'none',
+          height: `${exportHeight}px`,
           margin: '0',
         },
       });

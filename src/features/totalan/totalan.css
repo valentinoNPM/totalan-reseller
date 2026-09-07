@@ -25,6 +25,15 @@
   box-shadow: 0 8px 28px rgba(88, 53, 66, 0.09);
 }
 
+/* Keep image exports identical on phones and desktops. This rule must define
+   the layout before html-to-image clones the node, not only resize its canvas. */
+.invoice-document.invoice-exporting {
+  width: 760px !important;
+  min-width: 760px !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
 .invoice-header {
   display: flex;
   align-items: flex-start;
@@ -83,7 +92,7 @@
   padding: 13px 32px;
   background: #fffafb;
   color: #72525e;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .invoice-table {
@@ -91,14 +100,14 @@
   margin: 4px 32px 22px;
   border-collapse: collapse;
   table-layout: fixed;
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .invoice-table th {
   padding: 12px 10px;
   background: #f4bfd0;
   color: #4f2635;
-  font-size: 11px;
+  font-size: 13px;
   letter-spacing: .35px;
   text-align: left;
   text-transform: uppercase;
@@ -142,7 +151,7 @@
   gap: 20px;
   padding: 6px 0;
   color: #66525a;
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .invoice-summary strong {
@@ -161,14 +170,14 @@
 
 .invoice-grand-total strong {
   color: #fff;
-  font-size: 19px;
+  font-size: 22px;
 }
 
 .invoice-footer {
   padding: 15px 32px;
   background: #faf7f8;
   color: #846d76;
-  font-size: 11px;
+  font-size: 12px;
   text-align: center;
 }
 
