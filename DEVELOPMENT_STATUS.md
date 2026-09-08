@@ -17,6 +17,8 @@ M7: DONE. Technical verification: PASS (Playwright tests pass). User acceptance:
 
 ## Log yang diisi agen
 
+- **Master produk langsung (8 September 2026)**: Produk `BINAR` (Rp80.000/Rp78.000/Rp77.000) dan `PJPD SUPER JUMBO` (Rp74.000/Rp72.000/Rp71.000) ditambahkan secara atomik ke database Supabase production melalui migrasi `20260908000000`. `BINAR` tidak diberi alias duplikat karena nama kanonisnya sudah identik. Tidak ada deployment Netlify.
+
 - **M0**: Setup Vite+React+TS. Perubahan: Scaffold, hapus Tailwind, index.css basic vars. Verifikasi: `npm run build` PASS.
 - **M1**: Auth flow. Perubahan: UI Login, App router, adapter Netlify `api/login.ts`. Verifikasi: Playwright E2E PASS (mock backend unreachable). 
 - **M2**: Master Produk. Perubahan: schema DB, seed script `uuidv5`, UI Master (aktif/nonaktif, edit harga). Verifikasi: Node script syntax & Typescript PASS.
