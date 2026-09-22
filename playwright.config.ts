@@ -26,7 +26,7 @@ export default defineConfig({
     }
   ],
   webServer: {
-    command: 'npx netlify dev --offline',
+    command: 'npx -y netlify-cli dev --offline',
     url: 'http://127.0.0.1:8889',
     reuseExistingServer: !process.env.CI,
     timeout: 60 * 1000,

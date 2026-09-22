@@ -48,7 +48,7 @@ export default function Totalan() {
     fetchCatalog();
   }, []);
 
-  const fetchCatalog = async () => {
+  async function fetchCatalog() {
     setLoadingCatalog(true);
     // Fetch products
     const { data: pData, error: pErr } = await supabase

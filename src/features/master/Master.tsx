@@ -47,9 +47,7 @@ export default function Master() {
     const { error } = await supabase
       .from('products')
       .insert({
-        id: 'product-' + Math.random().toString(36).substr(2, 9),
         name: addForm.name.trim().toUpperCase(),
-        original_name: addForm.name.trim().toUpperCase(),
         normalized_name,
         reseller_price: addForm.reseller_price || 0,
         wholesale_price: addForm.wholesale_price || 0,
@@ -70,7 +68,7 @@ export default function Master() {
     fetchProducts();
   }, []);
 
-  const fetchProducts = async () => {
+  async function fetchProducts() {
     setLoading(true);
     const { data, error } = await supabase
       .from('products')
@@ -96,6 +94,11 @@ export default function Master() {
   };
 
   const handleSave = async (id: string) => {
+    if (!editForm.name) {
+      alert('Nama produk tidak boleh kosong');
+      return;
+    }
+
     // Basic validation
     if (
       (editForm.reseller_price ?? 0) < (editForm.wholesale_price ?? 0) ||
@@ -106,9 +109,13 @@ export default function Master() {
       }
     }
 
+    const normalized_name = editForm.name.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+
     const { error } = await supabase
       .from('products')
       .update({
+        name: editForm.name.trim().toUpperCase(),
+        normalized_name,
         reseller_price: editForm.reseller_price,
         wholesale_price: editForm.wholesale_price,
         bulk_price: editForm.bulk_price,
@@ -226,6 +233,14 @@ export default function Master() {
 
                 {isEditing ? (
                   <div style={{ display: 'grid', gap: 'var(--spacing-2)', gridTemplateColumns: '1fr 1fr' }}>
+                    <div style={{ gridColumn: '1 / -1' }}>
+                      <label style={{ fontSize: '12px' }}>Nama Produk</label>
+                      <input 
+                        type="text" 
+                        value={editForm.name || ''}
+                        onChange={e => setEditForm({...editForm, name: e.target.value.toUpperCase()})}
+                      />
+                    </div>
                     <div>
                       <label style={{ fontSize: '12px' }}>Reseller</label>
                       <input 

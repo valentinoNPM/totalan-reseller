@@ -28,7 +28,7 @@ export default function History() {
     fetchHistory();
   }, []);
 
-  const fetchHistory = async () => {
+  async function fetchHistory() {
     setLoading(true);
     // Fetch top 50 recent orders
     const { data, error } = await supabase
