@@ -17,7 +17,25 @@ M7: DONE. Technical verification: PASS (Playwright tests pass). User acceptance:
 
 ## Log yang diisi agen
 
+- **Master produk langsung (12 September 2026)**: `VNECK PDPD LD130` dan `VNECK PJPD LD130` dinonaktifkan secara atomik melalui migrasi `20260912000000_deactivate_vneck_ld130.sql`. Record dan snapshot totalan lama dipertahankan; versi kedua produk naik satu. Tidak ada deployment Netlify.
+
 - **Master produk langsung (8 September 2026)**: Produk `BINAR` (Rp80.000/Rp78.000/Rp77.000) dan `PJPD SUPER JUMBO` (Rp74.000/Rp72.000/Rp71.000) ditambahkan secara atomik ke database Supabase production melalui migrasi `20260908000000`. `BINAR` tidak diberi alias duplikat karena nama kanonisnya sudah identik. Tidak ada deployment Netlify.
+
+- **Master produk langsung (11 September 2026)**: Migrasi atomik dan idempotent `20260911000000_add_dress_syifa_melly_ruby.sql` diterapkan ke Supabase production. Ditambahkan `DRESS SYIFA` (Rp69.000/Rp67.000/Rp66.000), `MELLY` (Rp80.000/Rp78.000/Rp77.000), dan `RUBY` (Rp78.000/Rp76.000/Rp75.000), semuanya aktif dengan namespace canonical. Verifikasi baca balik: 3/3 produk dan canonical names cocok; total katalog production 88. Tidak ada deployment Netlify.
+
+- **Master produk langsung (11 September 2026)**: Nama kanonik `CINTA BUSUI/AIRA` diganti secara atomik menjadi `AIRA` melalui migrasi `20260911010000_rename_cinta_busui_aira_to_aira.sql`. Harga tetap Rp70.000/Rp68.000/Rp67.000, status aktif, versi katalog naik menjadi 2, dan namespace nama lama dihapus. Verifikasi baca balik production PASS; total katalog tetap 88. Snapshot totalan lama tidak berubah dan tidak ada deployment Netlify.
+
+- **Master produk langsung (11 September 2026)**: Ejaan nama kanonik `CINTA STANDART` dikoreksi secara atomik menjadi `CINTA STANDAR` melalui migrasi `20260911020000_rename_cinta_standart_to_standar.sql`. Harga tetap Rp58.000/Rp56.000/Rp55.000, status aktif, versi katalog naik menjadi 2, dan namespace ejaan lama dihapus. Verifikasi baca balik production PASS; total katalog tetap 88. Snapshot totalan lama tidak berubah dan tidak ada deployment Netlify.
+
+- **Master produk langsung (11 September 2026)**: Lima nama kanonik dikoreksi secara atomik melalui migrasi `20260911030000_correct_pdpj_to_pjpd_names.sql`: `ZIZI PDPJ`→`ZIZI PJPD`, `HAGIA PDPJ`→`HAGIA PJPD`, `PDPJ JUMBO`→`PJPD JUMBO`, `PDPJ STD`→`PJPD STANDAR`, dan `VNECK PDPJ LD130`→`VNECK PJPD LD130`. Harga/status tetap, semua versi katalog naik menjadi 2, dan lima namespace lama dihapus. Verifikasi baca balik production PASS (5 produk + 5 canonical names, 0 nama lama); total katalog tetap 88. Snapshot totalan lama tidak berubah dan tidak ada deployment Netlify.
+
+- **Master produk langsung (11 September 2026)**: Nama kanonik `VNECK JMB` diganti secara atomik menjadi `VNECK JUMBO` melalui migrasi `20260911050000_rename_vneck_jmb_to_jumbo.sql`. Harga tetap Rp65.000/Rp63.000/Rp62.000, status aktif, versi katalog naik menjadi 2, dan namespace nama lama dihapus. Verifikasi baca balik production PASS; total katalog tetap 88. Snapshot totalan lama tidak berubah dan tidak ada deployment Netlify.
+
+- **Master produk langsung (11 September 2026)**: Produk aktif `SUPER PDPD` ditambahkan secara atomik dan idempotent melalui migrasi `20260911060000_add_super_pdpd.sql`, dengan harga reseller Rp64.000, grosir Rp62.000, dan partai Rp61.000 serta namespace canonical. Verifikasi baca balik production PASS; total katalog menjadi 89. Tidak ada deployment Netlify.
+
+- **Master produk langsung (11 September 2026)**: Nama kanonik `PJPD SUPER JUMBO` diganti secara atomik menjadi `SUPER PJPD` melalui migrasi `20260911070000_rename_pjpd_super_jumbo_to_super_pjpd.sql`. Harga tetap Rp74.000/Rp72.000/Rp71.000, status aktif, versi katalog naik menjadi 2, dan namespace nama lama dihapus. Verifikasi baca balik production PASS; total katalog tetap 89. Snapshot totalan lama tidak berubah dan tidak ada deployment Netlify.
+
+- **Master produk langsung (11 September 2026)**: Empat nama kanonik dikoreksi secara atomik melalui migrasi `20260911040000_expand_std_to_standar_names.sql`: `DANIA PJPD STD`→`DANIA PJPD STANDAR`, `OLIVE STD`→`OLIVE STANDAR`, `YOONA PJPD STD`→`YOONA PJPD STANDAR`, dan `PDPD STD`→`PDPD STANDAR`. Harga/status tetap, semua versi katalog naik menjadi 2, dan empat namespace lama dihapus. Verifikasi baca balik production PASS (4 produk + 4 canonical names, 0 nama lama); total katalog tetap 88. Snapshot totalan lama tidak berubah dan tidak ada deployment Netlify.
 
 - **M0**: Setup Vite+React+TS. Perubahan: Scaffold, hapus Tailwind, index.css basic vars. Verifikasi: `npm run build` PASS.
 - **M1**: Auth flow. Perubahan: UI Login, App router, adapter Netlify `api/login.ts`. Verifikasi: Playwright E2E PASS (mock backend unreachable). 
@@ -55,3 +73,13 @@ Sistem secara komprehensif **100% SIAP** secara lokal. Kapan pun Anda memutuskan
 2. Jalankan `npx netlify link` di folder ini.
 3. Atur *Environment Variables* di dashboard Netlify.
 4. Jalankan `npm run build && npx netlify deploy --prod`.
+
+## Riwayat dan analisis kredit Netlify — 22 September 2026
+
+- Siklus billing yang terlihat di dashboard pengguna: 2 September–1 Oktober 2026.
+- Dashboard menunjukkan 30 kredit tersisa, tetapi kredit tersebut dibatasi untuk menjaga situs published tetap online dan tidak dapat dipakai untuk production deploy atau Agent Runners.
+- Riwayat Git mencatat 11 commit aplikasi dalam rentang 6–7 September 2026. Karena branch `main` terhubung ke Netlify, push terpisah berpotensi memicu production deploy terpisah.
+- Dokumentasi proyek juga mencatat setidaknya dua production deploy manual pada 7 September: deploy `6a9e014f80cd7cef5d79cab3` dan `6a9e03d5fe2df3f74dc2374b`.
+- Netlify mengenakan 15 kredit untuk setiap production deploy sukses pada paket credit-based. Kredit lain dapat terpakai oleh web requests, compute, dan bandwidth. Repository tidak menyimpan seluruh ledger penggunaan, sehingga jumlah dan rincian final tetap mengikuti halaman Usage & billing Netlify.
+- Kesimpulan: limit terutama terkuras karena perubahan UI dikirim dan dideploy dalam banyak batch kecil, ditambah penggunaan operasional situs; perubahan katalog langsung melalui migrasi Supabase sejak 8 September tidak memakai deployment Netlify.
+- Pencegahan: kumpulkan perubahan kode, jalankan build/test lokal, lalu push satu batch saat siap production. Perubahan katalog/harga/status produk tetap dilakukan langsung melalui Supabase. Production deploy berikutnya menunggu reset siklus sekitar 2 Oktober 2026, kecuali paket ditingkatkan.
