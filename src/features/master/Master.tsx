@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
 import { Edit2, Save, X, Plus } from 'lucide-react';
+import { normalizeName } from '../../domain/parser';
 
 interface Product {
   id: string;
@@ -36,7 +37,7 @@ export default function Master() {
       return;
     }
 
-    const normalized_name = addForm.name.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+    const normalized_name = normalizeName(addForm.name);
     
     // Check if exists
     if (products.some(p => p.normalized_name === normalized_name)) {
@@ -109,7 +110,7 @@ export default function Master() {
       }
     }
 
-    const normalized_name = editForm.name.trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+    const normalized_name = normalizeName(editForm.name);
 
     const { error } = await supabase
       .from('products')
